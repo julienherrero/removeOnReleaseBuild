@@ -1,8 +1,8 @@
 package com.example.removecodeonrealdemo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,7 +10,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         debugOnly {
-            Log.d("MainActivity", "This line of code will removed on release build")
+            Log.d("MainActivity", "This is for debug build (debugOnly)")
+        }
+
+        releaseOnly {
+            Log.d("MainActivity", "This is for release build (releaseOnly)")
+        }
+
+        ifDebugElseRelease({ Log.d("MainActivity", "This is for debug build (ifDebugElseRelease)") }) {
+            Log.d(
+                "MainActivity",
+                "This is for release build (ifDebugElseRelease)"
+            )
         }
     }
 }
